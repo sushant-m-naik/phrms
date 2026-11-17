@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Patient Health Record Management System - A simple and secure way to manage patient records. Store. Search. Protect.">
+  <meta name="keywords" content="health records, EHR, medical records management, clinic software, patient portal">
+  <meta name="author" content="Nainika, Namita, Nagaraj">
+  <title>PHRMS | Patient Health Record Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230d9488%22/><path d=%22M50 78 C30 62 20 48 20 34 C20 22 30 14 42 14 C46 14 50 17 50 17 C50 17 54 14 58 14 C70 14 80 22 80 34 C80 48 70 62 50 78 Z%22 fill=%22white%22/><path d=%22M27 45 L37 45 L43 32 L49 56 L55 38 L60 45 L73 45%22 fill=%22none%22 stroke=%22%230d9488%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="navbar" id="top">
+    <div class="nav-container">
+      <a href="#top" class="brand-logo" aria-label="PHRMS Home">
+        <div class="logo-icon-wrap">
+          <svg viewBox="0 0 100 100" class="logo-svg" aria-hidden="true">
+            <circle cx="50" cy="50" r="46" fill="#008a90"/>
+            <path d="M50 78 C28 62 18 47 18 33 C18 20 29 12 42 12 C46 12 50 15 50 15 C50 15 54 12 58 12 C71 12 82 20 82 33 C82 47 72 62 50 78 Z" fill="#ffffff"/>
+            <path d="M26 44 L37 44 L43 31 L50 57 L56 37 L61 44 L74 44" fill="none" stroke="#008a90" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="doctor-badge" title="Medical grade">🩺</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">PHRMS</span>
+          <span class="brand-subtitle">Patient Records</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main Navigation">
+        <a href="/about/" class="nav-link">Problem</a>
+        <a href="/about/#solution" class="nav-link">Solution</a>
+        <a href="/about/#features" class="nav-link">Features</a>
+        <a href="/about/#workflow" class="nav-link">How It Works</a>
+        <a href="/about/#security" class="nav-link">Security</a>
+        <a href="/about/#roadmap" class="nav-link">Roadmap</a>
+        <a href="/about/#demo" class="nav-link nav-highlight">Live Demo</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div id="authNavContainer" class="auth-nav-container">
+          <!-- Dynamically populated: Login/Signup buttons OR User Profile Pill -->
+        </div>
+        <button class="btn btn-outline btn-sm" id="presentationModeBtn" title="Toggle Slide View Mode">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Slides</span>
+        </button>
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark/Light Mode" title="Toggle Theme">
+          <span class="theme-icon light-icon">☀️</span>
+          <span class="theme-icon dark-icon">🌙</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            A Simple &amp; Secure Way to Manage Patient Records
+          </div>
+          <h1 class="hero-title">
+            Patient Health Record <br>
+            <span class="gradient-text">Management System</span>
+          </h1>
+          <p class="hero-desc">
+            Transforming cluttered paper files into an instant, organized, and secure digital health ecosystem. Experience lightning-fast retrieval, automated reminders, and complete peace of mind.
+          </p>
+
+          <div class="tagline-pills">
+            <span class="pill-tag">Store</span>
+            <span class="pill-dot">•</span>
+            <span class="pill-tag">Search</span>
+            <span class="pill-dot">•</span>
+            <span class="pill-tag">Protect</span>
+          </div>
+
+          <blockquote class="hero-quote">
+            “Know Your Health, Protect Your Future.”
+          </blockquote>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-lg" id="heroSignupBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              Patient Self-Register
+            </button>
+            <a href="#demo" class="btn btn-secondary btn-lg" id="heroDemoBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Explore Clinical Portal
+            </a>
+          </div>
+
+          <div class="hero-authors">
+            <span class="authors-label">Project Team:</span>
+            <div class="authors-list">
+              <span class="author-tag">Nainika</span>
+              <span class="author-sep">•</span>
+              <span class="author-tag">Namita</span>
+              <span class="author-sep">•</span>
+              <span class="author-tag">Nagaraj</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-graphic">
+          <div class="pulse-emblem-card">
+            <div class="emblem-circle-outer">
+              <div class="emblem-circle-inner">
+                <svg viewBox="0 0 100 100" class="hero-heart-svg">
+                  <path d="M50 78 C26 60 16 45 16 31 C16 18 27 10 40 10 C45 10 50 13 50 13 C50 13 55 10 60 10 C73 10 84 18 84 31 C84 45 74 60 50 78 Z" fill="#ffffff"/>
+                  <path d="M25 43 L36 43 L42 29 L49 57 L55 35 L60 43 L75 43" fill="none" stroke="#008a90" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="floating-badge badge-med">
+                <span>💊</span> Dose Alerts
+              </div>
+              <div class="floating-badge badge-doc">
+                <span>🩺</span> Authorized Only
+              </div>
+              <div class="floating-badge badge-time">
+                <span>⚡</span> &lt; 1s Search
+              </div>
+            </div>
+
+            <!-- Mini Dashboard Card -->
+            <div class="glass-dashboard-card">
+              <div class="card-header-bar">
+                <div class="dots"><span></span><span></span><span></span></div>
+                <span class="card-bar-title">Quick Health Monitor</span>
+                <span class="status-live">● System Live</span>
+              </div>
+              <div class="stats-mini-row">
+                <div class="stat-mini">
+                  <span class="stat-val">100%</span>
+                  <span class="stat-lbl">Digitalized</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-val">0</span>
+                  <span class="stat-lbl">Paper Loss</span>
+                </div>
+                <div class="stat-mini">
+                  <span class="stat-val">24/7</span>
+                  <span class="stat-lbl">Protected</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+    
+    
+    <!-- Interactive Simulator / Live Demo Section -->
+    <section class="section demo-section" id="demo">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag section-tag-primary">Experience It In Action</span>
+          <h2 class="section-title">Interactive PHRMS Clinical Portal</h2>
+          <p class="section-subtitle">Role-Based Access: Patients can self-register, manage their health profile, and view prescriptions; Clinic Admins possess full diagnostic, intake, user, and backup controls.</p>
+        </div>
+
+        <!-- Role Access Bar & Quick Switcher -->
+        <div class="role-access-banner" id="roleAccessBanner">
+          <div class="role-banner-left">
+            <span class="role-status-dot" id="roleStatusDot"></span>
+            <div class="role-banner-info">
+              <span class="role-badge-pill" id="roleBadgePill">Guest Mode</span>
+              <span class="role-banner-title" id="roleBannerTitle">Public Preview Access</span>
+              <p class="role-banner-desc" id="roleBannerDesc">Log in as Admin for full clinical oversight, or Sign Up as a Patient to test self-registration.</p>
+            </div>
+          </div>
+          <div class="role-banner-actions" id="roleBannerActions">
+            <!-- Injected via app.js -->
+          </div>
+        </div>
+
+        <div class="demo-card-container">
+          <!-- Demo Top Bar -->
+          <div class="demo-top-bar">
+            <div class="demo-tabs" id="demoTabsContainer">
+              <!-- Dynamically populated depending on user role -->
+            </div>
+            <div class="demo-meta">
+              <span class="clinic-mode-pill" id="clinicModePill">Role: Guest</span>
+              <button class="btn btn-outline btn-xs" id="resetDemoBtn" title="Reset all records to factory default">Reset Data</button>
+            </div>
+          </div>
+
+          <!-- ADMIN / GUEST TAB 1: Search & View All Records -->
+          <div class="demo-tab-content active" id="searchTab">
+            <div class="search-bar-wrap">
+              <div class="search-input-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="patientSearchInput" placeholder="Search by patient name, ID (e.g., P-101), or condition..." autocomplete="off">
+                <button class="search-clear-btn" id="searchClearBtn" aria-label="Clear Search">✕</button>
+              </div>
+              <div class="filter-pills">
+                <span class="filter-pill active" data-filter="all">All Patients</span>
+                <span class="filter-pill" data-filter="recent">Recent Visits</span>
+                <span class="filter-pill" data-filter="allergies">With Allergies</span>
+              </div>
+            </div>
+
+            <div class="patient-table-wrap">
+              <table class="patient-table">
+                <thead>
+                  <tr>
+                    <th>Patient ID</th>
+                    <th>Full Name</th>
+                    <th>Age / Gender</th>
+                    <th>Last Visit</th>
+                    <th>Diagnosis</th>
+                    <th>Next Appt</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="patientTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            <div id="noResultsMsg" class="no-results hidden">
+              <p>🔍 No patients found matching your query. Try registering a new record!</p>
+            </div>
+          </div>
+
+          <!-- ADMIN / GUEST TAB 2: Register New Patient (Clinic Intake) -->
+          <div class="demo-tab-content" id="registerTab">
+            <div class="tab-intro-box">
+              <h3>Clinic Staff Intake Form</h3>
+              <p>Admins and clinic staff can register walk-in patients directly into the centralized PHRMS database.</p>
+            </div>
+            <form id="newPatientForm" class="patient-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="regName">Full Name *</label>
+                  <input type="text" id="regName" required placeholder="e.g. Eleanor Vance">
+                </div>
+                <div class="form-group">
+                  <label for="regAge">Age *</label>
+                  <input type="number" id="regAge" min="1" max="120" required placeholder="e.g. 34">
+                </div>
+                <div class="form-group">
+                  <label for="regGender">Gender</label>
+                  <select id="regGender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="regContact">Phone Number *</label>
+                  <input type="tel" id="regContact" required placeholder="+1 (555) 019-2831">
+                </div>
+                <div class="form-group">
+                  <label for="regAllergies">Known Allergies</label>
+                  <input type="text" id="regAllergies" placeholder="e.g. Penicillin, Peanuts (or None)">
+                </div>
+                <div class="form-group">
+                  <label for="regDiagnosis">Primary Diagnosis / Chief Complaint</label>
+                  <input type="text" id="regDiagnosis" required placeholder="e.g. Hypertension, Seasonal Flu">
+                </div>
+                <div class="form-group full-width">
+                  <label for="regMedication">Prescribed Medicine &amp; Schedule</label>
+                  <input type="text" id="regMedication" placeholder="e.g. Amoxicillin 500mg (8:00 AM &amp; 8:00 PM)">
+                </div>
+                <div class="form-group full-width">
+                  <label for="regNotes">Doctor's Clinical Notes</label>
+                  <textarea id="regNotes" rows="3" placeholder="Symptoms, observed vitals, next recommended follow-up..."></textarea>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <span>💾 Save Record to Database</span>
+                </button>
+                <button type="reset" class="btn btn-outline">Clear Fields</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- ADMIN / GUEST TAB 3: Clinic Medication Reminders -->
+          <div class="demo-tab-content" id="reminderTab">
+            <div class="reminder-header">
+              <h3>Today's Clinic-Wide Medication Schedule</h3>
+              <p>Automated reminders configured for all registered clinic patients. (Admin oversight mode)</p>
+            </div>
+            <div class="reminder-grid" id="reminderListContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- ADMIN ONLY TAB 4: User Directory, Security & Cloud Backup -->
+          <div class="demo-tab-content" id="adminUsersTab">
+            <div class="admin-panel-header">
+              <div>
+                <h3>System User Directory &amp; Cloud Backup</h3>
+                <p>Manage all registered clinic personnel and self-registered patients. (Admin Exclusive Access)</p>
+              </div>
+              <div class="admin-panel-actions">
+                <button class="btn btn-primary btn-sm" id="exportBackupBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export System Backup (JSON)
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatTotalPatients">5</span>
+                <span class="astat-lbl">Total Patient Records</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatTotalUsers">2</span>
+                <span class="astat-lbl">Registered User Accounts</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatSelfRegistered">1</span>
+                <span class="astat-lbl">Self-Registered Patients</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatActiveAdmins">1</span>
+                <span class="astat-lbl">Clinic Administrators</span>
+              </div>
+            </div>
+
+            <div class="patient-table-wrap" style="margin-top: 1.5rem;">
+              <table class="patient-table">
+                <thead>
+                  <tr>
+                    <th>Account ID</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                    <th>Linked Patient ID</th>
+                    <th>Access Level</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 1: My Health Record -->
+          <div class="demo-tab-content" id="patientRecordTab">
+            <div id="patientRecordContainer">
+              <!-- Dynamically populated with logged in patient's dossier -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 2: My Prescriptions & Reminders -->
+          <div class="demo-tab-content" id="patientRemindersTab">
+            <div id="patientMyRemindersContainer">
+              <!-- Dynamically populated with patient's medicines and dose checklist -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 3: My Appointments -->
+          <div class="demo-tab-content" id="patientAppointmentsTab">
+            <div id="patientAppointmentsContainer">
+              <!-- Dynamically populated with patient's consultation status -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 4: Self-Service Profile Update -->
+          <div class="demo-tab-content" id="patientProfileTab">
+            <div class="tab-intro-box">
+              <h3>Update My Personal Information</h3>
+              <p>Keep your phone number, emergency contact, and known allergies current for your attending doctor.</p>
+            </div>
+            <form id="patientProfileEditForm" class="patient-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="profName">Full Name (System Verified)</label>
+                  <input type="text" id="profName" readonly disabled>
+                </div>
+                <div class="form-group">
+                  <label for="profId">Patient Health ID (Assigned)</label>
+                  <input type="text" id="profId" readonly disabled>
+                </div>
+                <div class="form-group">
+                  <label for="profContact">Phone Number *</label>
+                  <input type="tel" id="profContact" required placeholder="+1 (555) 234-5678">
+                </div>
+                <div class="form-group">
+                  <label for="profAllergies">Known Allergies *</label>
+                  <input type="text" id="profAllergies" required placeholder="e.g. Penicillin, Peanuts, Pollen">
+                </div>
+                <div class="form-group full-width">
+                  <label for="profAddress">Residential Address / City</label>
+                  <input type="text" id="profAddress" placeholder="e.g. 104 Maple Street, Apt 3B">
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <span>✓ Save My Updated Profile</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patient Detail Modal -->
+    <div class="modal-backdrop" id="patientModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-box">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="patient-id-badge" id="modalPatientId">P-000</span>
+            <h3 id="modalPatientName">Patient Name</h3>
+          </div>
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">✕</button>
+        </div>
+        <div class="modal-body" id="modalBodyContent">
+          <!-- Dynamic details injected here -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-sm" id="modalUpdateBtn">Add New Visit Note</button>
+          <button class="btn btn-secondary btn-sm" id="modalDismissBtn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future Improvements Section -->
+    <section class="section roadmap-section" id="roadmap">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Strategic Roadmap</span>
+          <h2 class="section-title">Future Improvements</h2>
+          <p class="section-subtitle">Scalable milestones expanding the system towards an integrated smart healthcare ecosystem.</p>
+        </div>
+
+        <div class="roadmap-grid">
+          <div class="roadmap-card">
+            <div class="roadmap-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>User accounts</h3>
+            <p>Separate doctor and patient logins. Patients can log in from home to securely view their own history and prescriptions.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3>Appointments</h3>
+            <p>Direct online booking and smart queue management so patients wait less in clinical reception areas.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3>Reports &amp; prescriptions</h3>
+            <p>Store PDF lab reports, radiology imaging, and digitally signed e-prescriptions directly linked with each visit.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <h3>Online backup</h3>
+            <p>Automatic encrypted cloud replication, ensuring safety and instant disaster recovery whenever needed.</p>
+          </div>
+
+          <div class="roadmap-card">
+            <div class="roadmap-icon">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3>Better access control</h3>
+            <p>Detailed, granular permissions tailored for nurses, lab specialists, billing clerks, and attending physicians.</p>
+          </div>
+
+          <!-- Highlight Goal Box -->
+          <div class="roadmap-card goal-card">
+            <div class="goal-icon">
+              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/><path d="M12 7v4"/><path d="M10 9h4"/></svg>
+            </div>
+            <div class="goal-content">
+              <span class="goal-badge">Ultimate Mission</span>
+              <h3 class="goal-title">Goal: one connected, paperless clinic.</h3>
+              <p>Fostering seamless coordination between reception, doctors, diagnostics, and patients without a single lost sheet of paper.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section conclusion-section" id="conclusion">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Clear Value Proposition</span>
+          <h2 class="section-title">Conclusion</h2>
+          <p class="section-subtitle">A simple digital system improves patient records in three definitive ways:</p>
+        </div>
+
+        <div class="conclusion-cards">
+          <div class="conclusion-box">
+            <div class="conclusion-box-icon">📁</div>
+            <h3>More organized</h3>
+            <p>Every patient's details sit in one centralized place, neatly arranged and immediately comprehensible.</p>
+          </div>
+          <div class="conclusion-box">
+            <div class="conclusion-box-icon">⚡</div>
+            <h3>Faster to access</h3>
+            <p>Search brings up an entire clinical record in moments, even in the busiest clinic rush hour.</p>
+          </div>
+          <div class="conclusion-box">
+            <div class="conclusion-box-icon">✨</div>
+            <h3>Easier to manage</h3>
+            <p>Updating, protecting, and backing up medical records takes drastically less human effort.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Presentation Slide Viewer Modal (Interactive Slide Carousel) -->
+    <div class="presentation-modal" id="slideViewerModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="presentation-container">
+        <div class="presentation-header">
+          <div class="pres-title">
+            <span>Slide Presentation Mode</span>
+            <span class="slide-indicator" id="slideIndicator">Slide 1 of 9</span>
+          </div>
+          <button class="pres-close-btn" id="presCloseBtn" aria-label="Exit presentation mode">✕</button>
+        </div>
+
+        <div class="slide-viewport" id="slideViewport">
+          <!-- Slide 1 -->
+          <div class="slide-item active" data-slide="1">
+            <div class="slide-card theme-dark-slide">
+              <div class="slide-cover-badge">🩺</div>
+              <h2 class="slide-main-title">Patient Health Record Management System</h2>
+              <p class="slide-sub">A simple and secure way to manage patient records.</p>
+              <div class="slide-author-row">Nainika &bull; Namita &bull; Nagaraj</div>
+              <div class="slide-logo-circle">
+                <svg viewBox="0 0 100 100" class="slide-heart">
+                  <circle cx="50" cy="50" r="48" fill="#008a90"/>
+                  <path d="M50 78 C28 62 18 47 18 33 C18 20 29 12 42 12 C46 12 50 15 50 15 C50 15 54 12 58 12 C71 12 82 20 82 33 C82 47 72 62 50 78 Z" fill="#ffffff"/>
+                  <path d="M26 44 L37 44 L43 31 L50 57 L56 37 L61 44 L74 44" fill="none" stroke="#008a90" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="slide-item" data-slide="2">
+            <div class="slide-card">
+              <h2 class="slide-head">The problem</h2>
+              <div class="slide-list">
+                <div class="slide-list-row danger"><span class="badge-num">1</span> <strong>Hard to manage:</strong> Paper files pile up and get mixed up, so keeping them in order takes a lot of effort.</div>
+                <div class="slide-list-row danger"><span class="badge-num">2</span> <strong>Slow to find:</strong> Searching through old files for one patient's details wastes time when it matters most.</div>
+                <div class="slide-list-row danger"><span class="badge-num">3</span> <strong>Easy to lose:</strong> Papers can be lost, torn or damaged, and the information is gone for good.</div>
+                <div class="slide-list-row danger"><span class="badge-num">4</span> <strong>Missed appointments:</strong> Patients may forget when their next doctor appointment is.</div>
+                <div class="slide-list-row danger"><span class="badge-num">5</span> <strong>Forgotten medicines:</strong> Patients may forget which tablet to take and at what time.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="slide-item" data-slide="3">
+            <div class="slide-card">
+              <h2 class="slide-head">Our solution</h2>
+              <div class="slide-list">
+                <div class="slide-list-row"><span class="icon-circle">🗄️</span> <strong>Store:</strong> All patient details are kept together in one digital place instead of many paper files.</div>
+                <div class="slide-list-row"><span class="icon-circle">🔍</span> <strong>Search:</strong> Type a name or ID and the record appears quickly, with no digging through files.</div>
+                <div class="slide-list-row"><span class="icon-circle">🔒</span> <strong>Protect:</strong> Only authorized users can log in and see the information they need.</div>
+                <div class="slide-list-row"><span class="icon-circle">📅</span> <strong>Appointments:</strong> The doctor updates the visit date and time, and the patient gets a reminder on that day.</div>
+                <div class="slide-list-row"><span class="icon-circle">💊</span> <strong>Medicine reminders:</strong> Shows which tablet to take and at what time, so no dose is missed.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="slide-item" data-slide="4">
+            <div class="slide-card">
+              <h2 class="slide-head">Main features</h2>
+              <div class="slide-list">
+                <div class="slide-list-row"><span class="icon-circle">🪪</span> <strong>Patient details:</strong> Name, age, contact and other basic information.</div>
+                <div class="slide-list-row"><span class="icon-circle">📋</span> <strong>Medical history:</strong> Past illnesses, allergies and treatments in one place.</div>
+                <div class="slide-list-row"><span class="icon-circle">🗓️</span> <strong>Visit records:</strong> Date, symptoms and the doctor's notes for every visit.</div>
+                <div class="slide-list-row"><span class="icon-circle">🔎</span> <strong>Search &amp; update:</strong> Find a patient quickly and keep the record up to date.</div>
+                <div class="slide-list-row"><span class="icon-circle">🔑</span> <strong>Login &amp; access:</strong> Each user signs in and sees only what they need.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="slide-item" data-slide="5">
+            <div class="slide-card">
+              <h2 class="slide-head">How it works</h2>
+              <div class="slide-diagram-row">
+                <div class="flow-bubble"><span class="b-num">1</span><h4>Register</h4><p>Add basic details to create record.</p></div>
+                <span class="arr">&rarr;</span>
+                <div class="flow-bubble"><span class="b-num">2</span><h4>Save record</h4><p>Store visit, diagnosis &amp; treatment.</p></div>
+                <span class="arr">&rarr;</span>
+                <div class="flow-bubble"><span class="b-num">3</span><h4>Search</h4><p>Find quickly by name or ID.</p></div>
+                <span class="arr">&rarr;</span>
+                <div class="flow-bubble"><span class="b-num">4</span><h4>Update</h4><p>Add new info whenever patient returns.</p></div>
+              </div>
+              <div class="slide-note-box">
+                Steps 3 and 4 repeat at every visit, so the record always stays current.
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="slide-item" data-slide="6">
+            <div class="slide-card">
+              <h2 class="slide-head">Keeping records safe</h2>
+              <div class="slide-grid-2x2">
+                <div class="grid-box"><span class="icon-circle">👥</span><h4>Login for authorized users</h4><p>Doctors and staff sign in with their own account.</p></div>
+                <div class="grid-box"><span class="icon-circle">🛡️</span><h4>Keep information private</h4><p>Details are never shown to the public or unrelated people.</p></div>
+                <div class="grid-box"><span class="icon-circle">🗝️</span><h4>Allow only required access</h4><p>Each person sees only the part of the record they need.</p></div>
+                <div class="grid-box"><span class="icon-circle">☁️</span><h4>Back up important records</h4><p>A saved copy protects the data if something goes wrong.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 7 -->
+          <div class="slide-item" data-slide="7">
+            <div class="slide-card">
+              <h2 class="slide-head">Future improvements</h2>
+              <div class="slide-grid-3x2">
+                <div class="grid-box"><strong>User accounts:</strong> Separate doctor and patient logins; patients see own records.</div>
+                <div class="grid-box"><strong>Appointments:</strong> Book and manage visits so patients wait less.</div>
+                <div class="grid-box"><strong>Reports &amp; prescriptions:</strong> Store lab reports &amp; Rx with the record.</div>
+                <div class="grid-box"><strong>Online backup:</strong> Keep a safe copy in the cloud, ready if needed.</div>
+                <div class="grid-box"><strong>Better access control:</strong> Detailed permissions for every type of user.</div>
+                <div class="grid-box goal-highlight"><strong>Goal:</strong> One connected, paperless clinic.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 8 -->
+          <div class="slide-item" data-slide="8">
+            <div class="slide-card">
+              <h2 class="slide-head">Conclusion</h2>
+              <p class="slide-intro">A simple digital system improves patient records in three ways:</p>
+              <div class="slide-cards-3">
+                <div class="c-card"><span class="c-icon">📁</span><h3>More organized</h3><p>Every patient's details sit in one place, neatly arranged.</p></div>
+                <div class="c-card"><span class="c-icon">⚡</span><h3>Faster to access</h3><p>Search brings up a record in moments, even in a busy clinic.</p></div>
+                <div class="c-card"><span class="c-icon">📋</span><h3>Easier to manage</h3><p>Updating, protecting and backing up records takes less effort.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 9 -->
+          <div class="slide-item" data-slide="9">
+            <div class="slide-card theme-dark-slide text-center">
+              <h2 class="slide-main-title">Thank you</h2>
+              <p class="slide-sub highlight-sub">Suggestions are welcome!</p>
+              <div class="slide-taglines">
+                <em>Store. Search. Protect.</em>
+                <p class="slide-quote">“Know Your Health, Protect Your Future.”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="presentation-controls">
+          <button class="btn btn-outline btn-sm" id="prevSlideBtn">&larr; Previous Slide</button>
+          <div class="slide-dots" id="slideDots">
+            <!-- 9 dots injected -->
+          </div>
+          <button class="btn btn-primary btn-sm" id="nextSlideBtn">Next Slide &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggestion / Feedback Modal -->
+    <div class="modal-backdrop" id="feedbackModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>Share Your Suggestions</h3>
+          <button class="modal-close-btn" id="feedbackCloseBtn" aria-label="Close modal">✕</button>
+        </div>
+        <form id="feedbackForm">
+          <div class="modal-body">
+            <p class="modal-intro">“Suggestions are welcome!” Help Nainika, Namita, and Nagaraj refine this system:</p>
+            <div class="form-group">
+              <label for="fbName">Your Name</label>
+              <input type="text" id="fbName" placeholder="Dr. Jane Smith or Clinic Manager" required>
+            </div>
+            <div class="form-group">
+              <label for="fbRole">Role / Perspective</label>
+              <select id="fbRole">
+                <option value="doctor">Medical Doctor / Practitioner</option>
+                <option value="nurse">Nurse / Healthcare Worker</option>
+                <option value="admin">Clinic Administrator</option>
+                <option value="patient">Patient / Caregiver</option>
+                <option value="developer">Healthtech Developer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fbText">Feedback &amp; Recommendations</label>
+              <textarea id="fbText" rows="4" placeholder="What features or security protections would make this system even more valuable?" required></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-sm">Send Suggestion</button>
+            <button type="button" class="btn btn-outline btn-sm" id="feedbackCancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Auth Modal (Login & Patient Sign-Up) -->
+    <div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-box auth-modal-box">
+        <div class="modal-header">
+          <div class="auth-modal-tabs">
+            <button class="auth-tab-btn active" id="authLoginTabBtn" data-target="loginPanel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+              Sign In
+            </button>
+            <button class="auth-tab-btn" id="authSignupTabBtn" data-target="signupPanel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              Patient Self-Register
+            </button>
+          </div>
+          <button class="modal-close-btn" id="authCloseBtn" aria-label="Close modal">✕</button>
+        </div>
+
+        <div class="modal-body auth-modal-body">
+          <!-- QUICK DEMO ONE-CLICK BUTTONS -->
+          <div class="quick-login-strip">
+            <span class="quick-login-label">Quick 1-Click Demo Login:</span>
+            <div class="quick-login-btns">
+              <button type="button" class="btn btn-outline btn-xs" id="quickAdminLoginBtn">
+                🛡️ Admin (Dr. Nagaraj)
+              </button>
+              <button type="button" class="btn btn-outline btn-xs" id="quickPatientLoginBtn">
+                👤 Patient (Eleanor Vance)
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL 1: LOGIN FORM -->
+          <div class="auth-panel active" id="loginPanel">
+            <form id="loginForm">
+              <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" required placeholder="admin@phrms.clinic or your patient email">
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required placeholder="••••••••">
+              </div>
+              <div class="auth-form-footer">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Log In to Health Record Portal
+                </button>
+                <p class="auth-switch-note">
+                  New patient? <a href="javascript:void(0)" id="switchToSignupLink">Register yourself here &rarr;</a>
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- PANEL 2: PATIENT SIGN UP (SELF-REGISTRATION) -->
+          <div class="auth-panel" id="signupPanel">
+            <div class="signup-intro-note">
+              <strong>Patient Self-Service Registration:</strong> Create your health record account to track prescriptions, view consultation history, and manage medical appointments.
+            </div>
+            <form id="signupForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="signName">Full Name *</label>
+                  <input type="text" id="signName" required placeholder="e.g. Liam Cooper">
+                </div>
+                <div class="form-group">
+                  <label for="signEmail">Email Address *</label>
+                  <input type="email" id="signEmail" required placeholder="liam@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="signPassword">Choose Password *</label>
+                  <input type="password" id="signPassword" required minlength="4" placeholder="At least 4 characters">
+                </div>
+                <div class="form-group">
+                  <label for="signPhone">Phone Number *</label>
+                  <input type="tel" id="signPhone" required placeholder="+1 (555) 902-1234">
+                </div>
+                <div class="form-group">
+                  <label for="signAge">Age *</label>
+                  <input type="number" id="signAge" required min="1" max="120" placeholder="e.g. 32">
+                </div>
+                <div class="form-group">
+                  <label for="signGender">Gender</label>
+                  <select id="signGender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="signAllergies">Known Allergies (Food / Medication)</label>
+                  <input type="text" id="signAllergies" placeholder="e.g. Peanuts, Penicillin (or type None)">
+                </div>
+                <div class="form-group full-width">
+                  <label for="signConcern">Primary Health Concern / Reason for Visit *</label>
+                  <input type="text" id="signConcern" required placeholder="e.g. Annual Wellness Checkup, Migraines, Back Pain">
+                </div>
+                <div class="form-group full-width">
+                  <label for="signAdminCode" class="optional-label">Staff Invite Code (Optional - for Clinic Admins only)</label>
+                  <input type="text" id="signAdminCode" placeholder="Enter CLINIC2026 if registering as clinic staff">
+                </div>
+              </div>
+              <div class="auth-form-footer">
+                <button type="submit" class="btn btn-primary btn-block">
+                  ✨ Complete Registration &amp; Open My Portal
+                </button>
+                <p class="auth-switch-note">
+                  Already registered? <a href="javascript:void(0)" id="switchToLoginLink">Log in to your account</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo footer-logo">
+          <div class="logo-icon-wrap">
+            <svg viewBox="0 0 100 100" class="logo-svg" aria-hidden="true">
+              <circle cx="50" cy="50" r="46" fill="#008a90"/>
+              <path d="M50 78 C28 62 18 47 18 33 C18 20 29 12 42 12 C46 12 50 15 50 15 C50 15 54 12 58 12 C71 12 82 20 82 33 C82 47 72 62 50 78 Z" fill="#ffffff"/>
+              <path d="M26 44 L37 44 L43 31 L50 57 L56 37 L61 44 L74 44" fill="none" stroke="#008a90" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">PHRMS</span>
+            <span class="brand-subtitle">Store. Search. Protect.</span>
+          </div>
+        </div>
+        <p class="footer-motto">“Know Your Health, Protect Your Future.”</p>
+        <p class="footer-authors">Developed by <strong>Nainika</strong>, <strong>Namita</strong>, and <strong>Nagaraj</strong>.</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>System Plan</h4>
+        <ul>
+          <li><a href="#problem">The Problem</a></li>
+          <li><a href="#solution">Our 5 Solutions</a></li>
+          <li><a href="#features">Main Features</a></li>
+          <li><a href="#workflow">How It Works</a></li>
+          <li><a href="#security">Keeping Records Safe</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Clinic Vision</h4>
+        <ul>
+          <li><a href="#roadmap">Future Roadmap</a></li>
+          <li><a href="#demo">Live Demo Sandbox</a></li>
+          <li><a href="#conclusion">Key Advantages</a></li>
+          <li><a href="javascript:void(0)" id="openFeedbackFooterLink">Leave a Suggestion</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Performance &amp; Standards</h4>
+        <div class="badge-list">
+          <span class="tech-badge">⚡ Pure Static &bull; 0ms Delay</span>
+          <span class="tech-badge">🛡️ Role-Based Architecture</span>
+          <span class="tech-badge">📱 100% Mobile Responsive</span>
+          <span class="tech-badge">💾 LocalStorage Ready</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Patient Health Record Management System. Open concept for paperless clinics.</p>
+        <div class="footer-bottom-actions">
+          <a href="#top" class="back-to-top">Back to top &uarr;</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
