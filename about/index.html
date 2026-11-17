@@ -7,7 +7,7 @@
   <meta name="keywords" content="health records, EHR, medical records management, clinic software, patient portal">
   <meta name="author" content="Nainika, Namita, Nagaraj">
   <title>PHRMS | Patient Health Record Management System</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%230d9488%22/><path d=%22M50 78 C30 62 20 48 20 34 C20 22 30 14 42 14 C46 14 50 17 50 17 C50 17 54 14 58 14 C70 14 80 22 80 34 C80 48 70 62 50 78 Z%22 fill=%22white%22/><path d=%22M27 45 L37 45 L43 32 L49 56 L55 38 L60 45 L73 45%22 fill=%22none%22 stroke=%22%230d9488%22 stroke-width=%224%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
 </head>
 <body>
@@ -36,10 +36,13 @@
         <a href="#workflow" class="nav-link">How It Works</a>
         <a href="#security" class="nav-link">Security</a>
         <a href="#roadmap" class="nav-link">Roadmap</a>
-        <a href="#demo" class="nav-link nav-highlight">Live Demo</a>
+        <a href="#demo" class="nav-link nav-highlight">Clinical Portal</a>
       </nav>
 
       <div class="nav-actions">
+        <div id="authNavContainer" class="auth-nav-container">
+          <!-- Dynamically populated: Login/Signup buttons OR User Profile Pill -->
+        </div>
         <button class="btn btn-outline btn-sm" id="presentationModeBtn" title="Toggle Slide View Mode">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           <span>Slides</span>
@@ -85,12 +88,13 @@
           </blockquote>
 
           <div class="hero-cta-group">
-            <a href="#demo" class="btn btn-primary btn-lg">
+            <button class="btn btn-primary btn-lg" id="heroSignupBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              Patient Self-Register
+            </button>
+            <a href="#demo" class="btn btn-secondary btn-lg" id="heroDemoBtn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              Try Interactive Demo
-            </a>
-            <a href="#solution" class="btn btn-secondary btn-lg">
-              Explore Our Solution
+              Explore Clinical Portal
             </a>
           </div>
 
@@ -152,409 +156,48 @@
         </div>
       </div>
 
-      <!-- Quick Metrics Strip -->
-      <div class="container">
-        <div class="metrics-strip">
-          <div class="metric-item">
-            <div class="metric-icon">📁</div>
-            <div class="metric-text">
-              <h3>More Organized</h3>
-              <p>Every patient's details sit in one place, neatly arranged.</p>
-            </div>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <div class="metric-icon">⚡</div>
-            <div class="metric-text">
-              <h3>Faster to Access</h3>
-              <p>Search brings up records in moments, even in a busy clinic.</p>
-            </div>
-          </div>
-          <div class="metric-divider"></div>
-          <div class="metric-item">
-            <div class="metric-icon">📋</div>
-            <div class="metric-text">
-              <h3>Easier to Manage</h3>
-              <p>Updating, protecting, and backing up records takes minimal effort.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </section>
 
-    <!-- The Problem Section -->
-    <section class="section problem-section" id="problem">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag section-tag-danger">Why Change Is Needed</span>
-          <h2 class="section-title">The Problem With Paper Records</h2>
-          <p class="section-subtitle">Traditional clinics lose hundreds of clinical hours and risk critical medical omissions due to antiquated paper documentation.</p>
-        </div>
-
-        <div class="problem-list">
-          <div class="problem-card" data-step="1">
-            <div class="problem-badge">1</div>
-            <div class="problem-title-col">
-              <h3>Hard to manage</h3>
-            </div>
-            <div class="problem-desc-col">
-              <p>Paper files pile up and get mixed up, so keeping them in order takes a lot of effort and physical archive storage space.</p>
-            </div>
-            <div class="problem-impact">High overhead</div>
-          </div>
-
-          <div class="problem-card" data-step="2">
-            <div class="problem-badge">2</div>
-            <div class="problem-title-col">
-              <h3>Slow to find</h3>
-            </div>
-            <div class="problem-desc-col">
-              <p>Searching through old files for one patient's details wastes precious time when accurate treatment decisions matter most.</p>
-            </div>
-            <div class="problem-impact">Care delays</div>
-          </div>
-
-          <div class="problem-card" data-step="3">
-            <div class="problem-badge">3</div>
-            <div class="problem-title-col">
-              <h3>Easy to lose</h3>
-            </div>
-            <div class="problem-desc-col">
-              <p>Papers can be misplaced, torn, water-damaged, or burned. Once destroyed, irreplaceable medical histories are gone for good.</p>
-            </div>
-            <div class="problem-impact">Permanent loss</div>
-          </div>
-
-          <div class="problem-card" data-step="4">
-            <div class="problem-badge">4</div>
-            <div class="problem-title-col">
-              <h3>Missed appointments</h3>
-            </div>
-            <div class="problem-desc-col">
-              <p>Without automated reminders, patients frequently forget when their next doctor appointment is scheduled, disrupting care.</p>
-            </div>
-            <div class="problem-impact">No-show visits</div>
-          </div>
-
-          <div class="problem-card" data-step="5">
-            <div class="problem-badge">5</div>
-            <div class="problem-title-col">
-              <h3>Forgotten medicines</h3>
-            </div>
-            <div class="problem-desc-col">
-              <p>Patients easily forget which tablet to take and at what time, leading to non-compliance and compromised recovery outcomes.</p>
-            </div>
-            <div class="problem-impact">Dosage errors</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Solution Section -->
-    <section class="section solution-section" id="solution">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">Modern &amp; Intuitive</span>
-          <h2 class="section-title">Our Solution: 5 Smart Pillars</h2>
-          <p class="section-subtitle">A unified system engineered to eliminate clinical bottlenecks while safeguarding patient data integrity.</p>
-        </div>
-
-        <div class="solution-grid">
-          <div class="solution-card">
-            <div class="solution-icon-wrap icon-teal">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 5c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
-            </div>
-            <div class="solution-body">
-              <span class="pillar-label">Pillar 01</span>
-              <h3>Store</h3>
-              <p>All patient details are kept together in one digital place instead of many scattered, vulnerable paper folders.</p>
-              <ul class="solution-bullet-list">
-                <li>Unified electronic medical dossier</li>
-                <li>Zero physical filing cabinet space</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="solution-card">
-            <div class="solution-icon-wrap icon-cyan">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </div>
-            <div class="solution-body">
-              <span class="pillar-label">Pillar 02</span>
-              <h3>Search</h3>
-              <p>Type a name or patient ID and the complete record appears quickly on screen, with zero digging through dusty archives.</p>
-              <ul class="solution-bullet-list">
-                <li>Sub-second query retrieval</li>
-                <li>Find by name, phone, or unique health ID</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="solution-card">
-            <div class="solution-icon-wrap icon-blue">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div class="solution-body">
-              <span class="pillar-label">Pillar 03</span>
-              <h3>Protect</h3>
-              <p>Only verified, authorized staff can log in. User accounts ensure people only see the sensitive records they need.</p>
-              <ul class="solution-bullet-list">
-                <li>Authenticated staff sign-in</li>
-                <li>Role-scoped confidentiality barriers</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="solution-card">
-            <div class="solution-icon-wrap icon-amber">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
-            </div>
-            <div class="solution-body">
-              <span class="pillar-label">Pillar 04</span>
-              <h3>Appointments</h3>
-              <p>The doctor updates the visit date and time, and the patient gets timely notifications so no consultation is skipped.</p>
-              <ul class="solution-bullet-list">
-                <li>Automated day-of-visit reminders</li>
-                <li>Reduced no-shows &amp; optimized clinic scheduling</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="solution-card">
-            <div class="solution-icon-wrap icon-emerald">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-            </div>
-            <div class="solution-body">
-              <span class="pillar-label">Pillar 05</span>
-              <h3>Medicine Reminders</h3>
-              <p>Shows exactly which tablet to take and at what time, ensuring patient treatment plans are followed without miss.</p>
-              <ul class="solution-bullet-list">
-                <li>Dosage timing &amp; frequency tracker</li>
-                <li>Improved patient recovery compliance</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Features Section -->
-    <section class="section features-section" id="features">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">Core Functionality</span>
-          <h2 class="section-title">Main System Features</h2>
-          <p class="section-subtitle">Everything a clinic needs for streamlined day-to-day healthcare delivery.</p>
-        </div>
-
-        <div class="features-wrapper">
-          <div class="feature-row">
-            <div class="feature-icon-badge">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><line x1="15" y1="8" x2="17" y2="8"/><line x1="15" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/></svg>
-            </div>
-            <div class="feature-title">
-              <h3>Patient details</h3>
-            </div>
-            <div class="feature-desc">
-              <p>Name, age, contact, emergency contacts, blood group, and other foundational demographic information.</p>
-            </div>
-            <div class="feature-tag">Profile Module</div>
-          </div>
-
-          <div class="feature-row">
-            <div class="feature-icon-badge">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
-            </div>
-            <div class="feature-title">
-              <h3>Medical history</h3>
-            </div>
-            <div class="feature-desc">
-              <p>Past illnesses, known allergies, surgical records, chronic conditions, and ongoing treatments consolidated in one place.</p>
-            </div>
-            <div class="feature-tag">Clinical History</div>
-          </div>
-
-          <div class="feature-row">
-            <div class="feature-icon-badge">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/></svg>
-            </div>
-            <div class="feature-title">
-              <h3>Visit records</h3>
-            </div>
-            <div class="feature-desc">
-              <p>Date, presented symptoms, clinical observations, vitals, diagnosis, and the doctor's notes for every single visit.</p>
-            </div>
-            <div class="feature-tag">Encounter Log</div>
-          </div>
-
-          <div class="feature-row">
-            <div class="feature-icon-badge">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-            </div>
-            <div class="feature-title">
-              <h3>Search &amp; update</h3>
-            </div>
-            <div class="feature-desc">
-              <p>Find any registered patient quickly and keep the active record up to date instantly with new treatment notes.</p>
-            </div>
-            <div class="feature-tag">Real-time Sync</div>
-          </div>
-
-          <div class="feature-row">
-            <div class="feature-icon-badge">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 2-2 2m-1.5 1.5L16 7m-3.5 3.5L11 12"/><circle cx="7.5" cy="16.5" r="5.5"/><path d="m14 10 3 3"/></svg>
-            </div>
-            <div class="feature-title">
-              <h3>Login &amp; access</h3>
-            </div>
-            <div class="feature-desc">
-              <p>Each user signs in with verified credentials and sees only what they need for their specific clinical role.</p>
-            </div>
-            <div class="feature-tag">Access Control</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works Section -->
-    <section class="section workflow-section" id="workflow">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">Step-by-Step Cycle</span>
-          <h2 class="section-title">How It Works</h2>
-          <p class="section-subtitle">A seamless lifecycle that transforms patient intake into effortless ongoing care.</p>
-        </div>
-
-        <div class="workflow-steps-container">
-          <div class="step-card">
-            <div class="step-circle">1</div>
-            <h3>Register</h3>
-            <p>Add the patient's basic details to create a new digital record in seconds.</p>
-            <div class="step-badge">One-time Intake</div>
-          </div>
-
-          <div class="step-arrow">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-
-          <div class="step-card">
-            <div class="step-circle">2</div>
-            <h3>Save record</h3>
-            <p>Store the visit, diagnosis, lab observations, and treatment after each checkup.</p>
-            <div class="step-badge">Initial Consultation</div>
-          </div>
-
-          <div class="step-arrow">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-
-          <div class="step-card highlight-step">
-            <div class="step-circle">3</div>
-            <h3>Search</h3>
-            <p>Find any returning patient instantly by typing their name or unique ID.</p>
-            <div class="step-badge recurring-badge">Continuous Loop</div>
-          </div>
-
-          <div class="step-arrow">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-
-          <div class="step-card highlight-step">
-            <div class="step-circle">4</div>
-            <h3>Update</h3>
-            <p>Add new symptoms, tests, or prescriptions whenever the patient returns.</p>
-            <div class="step-badge recurring-badge">Continuous Loop</div>
-          </div>
-        </div>
-
-        <div class="cycle-callout">
-          <div class="cycle-callout-icon">🔄</div>
-          <div class="cycle-callout-text">
-            <strong>Continuous Care Cycle:</strong>
-            <span>Steps 3 and 4 repeat at every subsequent visit, ensuring medical records always reflect the most up-to-date health trajectory.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Keeping Records Safe Section -->
-    <section class="section security-section" id="security">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag section-tag-safe">Security &amp; Privacy First</span>
-          <h2 class="section-title">Keeping Records Safe</h2>
-          <p class="section-subtitle">Multi-layered confidentiality and data durability protocols guarding critical health details.</p>
-        </div>
-
-        <div class="security-grid">
-          <div class="security-card">
-            <div class="security-icon-circle">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3>Login for authorized users</h3>
-            <p>Doctors, nurses, and administrative staff sign in securely with their own individual credentials. No shared generic accounts.</p>
-          </div>
-
-          <div class="security-card">
-            <div class="security-icon-circle">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
-            </div>
-            <h3>Keep information private</h3>
-            <p>Patient health details are strictly confidential. They are never shown to the public or accessible to unrelated individuals.</p>
-          </div>
-
-          <div class="security-card">
-            <div class="security-icon-circle">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <h3>Allow only required access</h3>
-            <p>Principle of least privilege: each staff member sees only the exact portion of the record needed for their designated task.</p>
-          </div>
-
-          <div class="security-card">
-            <div class="security-icon-circle">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>
-            </div>
-            <h3>Back up important records</h3>
-            <p>Automated backup copies ensure patient data is never permanently lost if local hardware or network issues occur.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    
+    
     <!-- Interactive Simulator / Live Demo Section -->
     <section class="section demo-section" id="demo">
       <div class="container">
         <div class="section-header text-center">
           <span class="section-tag section-tag-primary">Experience It In Action</span>
-          <h2 class="section-title">Interactive PHRMS Demo</h2>
-          <p class="section-subtitle">Test out real patient search, view visit records, register demo patients, and trigger medicine reminders directly in your browser.</p>
+          <h2 class="section-title">Interactive PHRMS Clinical Portal</h2>
+          <p class="section-subtitle">Role-Based Access: Patients can self-register, manage their health profile, and view prescriptions; Clinic Admins possess full diagnostic, intake, user, and backup controls.</p>
+        </div>
+
+        <!-- Role Access Bar & Quick Switcher -->
+        <div class="role-access-banner" id="roleAccessBanner">
+          <div class="role-banner-left">
+            <span class="role-status-dot" id="roleStatusDot"></span>
+            <div class="role-banner-info">
+              <span class="role-badge-pill" id="roleBadgePill">Guest Mode</span>
+              <span class="role-banner-title" id="roleBannerTitle">Public Preview Access</span>
+              <p class="role-banner-desc" id="roleBannerDesc">Log in as Admin for full clinical oversight, or Sign Up as a Patient to test self-registration.</p>
+            </div>
+          </div>
+          <div class="role-banner-actions" id="roleBannerActions">
+            <!-- Injected via app.js -->
+          </div>
         </div>
 
         <div class="demo-card-container">
           <!-- Demo Top Bar -->
           <div class="demo-top-bar">
-            <div class="demo-tabs">
-              <button class="demo-tab-btn active" data-tab="searchTab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                Find &amp; View Records
-              </button>
-              <button class="demo-tab-btn" data-tab="registerTab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-                Register New Patient
-              </button>
-              <button class="demo-tab-btn" data-tab="reminderTab">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-                Med Reminders
-              </button>
+            <div class="demo-tabs" id="demoTabsContainer">
+              <!-- Dynamically populated depending on user role -->
             </div>
             <div class="demo-meta">
-              <span class="clinic-mode-pill">Clinic Mode: Active</span>
-              <button class="btn btn-outline btn-xs" id="resetDemoBtn">Reset Data</button>
+              <span class="clinic-mode-pill" id="clinicModePill">Role: Guest</span>
+              <button class="btn btn-outline btn-xs" id="resetDemoBtn" title="Reset all records to factory default">Reset Data</button>
             </div>
           </div>
 
-          <!-- Tab 1: Search & View -->
+          <!-- ADMIN / GUEST TAB 1: Search & View All Records -->
           <div class="demo-tab-content active" id="searchTab">
             <div class="search-bar-wrap">
               <div class="search-input-box">
@@ -592,8 +235,12 @@
             </div>
           </div>
 
-          <!-- Tab 2: Register New Patient -->
+          <!-- ADMIN / GUEST TAB 2: Register New Patient (Clinic Intake) -->
           <div class="demo-tab-content" id="registerTab">
+            <div class="tab-intro-box">
+              <h3>Clinic Staff Intake Form</h3>
+              <p>Admins and clinic staff can register walk-in patients directly into the centralized PHRMS database.</p>
+            </div>
             <form id="newPatientForm" class="patient-form">
               <div class="form-grid">
                 <div class="form-group">
@@ -642,15 +289,126 @@
             </form>
           </div>
 
-          <!-- Tab 3: Medicine Reminders -->
+          <!-- ADMIN / GUEST TAB 3: Clinic Medication Reminders -->
           <div class="demo-tab-content" id="reminderTab">
             <div class="reminder-header">
-              <h3>Today's Clinic Medication Schedule</h3>
-              <p>Automated reminders configured for registered patients. No dose missed!</p>
+              <h3>Today's Clinic-Wide Medication Schedule</h3>
+              <p>Automated reminders configured for all registered clinic patients. (Admin oversight mode)</p>
             </div>
             <div class="reminder-grid" id="reminderListContainer">
               <!-- Dynamically populated -->
             </div>
+          </div>
+
+          <!-- ADMIN ONLY TAB 4: User Directory, Security & Cloud Backup -->
+          <div class="demo-tab-content" id="adminUsersTab">
+            <div class="admin-panel-header">
+              <div>
+                <h3>System User Directory &amp; Cloud Backup</h3>
+                <p>Manage all registered clinic personnel and self-registered patients. (Admin Exclusive Access)</p>
+              </div>
+              <div class="admin-panel-actions">
+                <button class="btn btn-primary btn-sm" id="exportBackupBtn">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export System Backup (JSON)
+                </button>
+              </div>
+            </div>
+
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatTotalPatients">5</span>
+                <span class="astat-lbl">Total Patient Records</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatTotalUsers">2</span>
+                <span class="astat-lbl">Registered User Accounts</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatSelfRegistered">1</span>
+                <span class="astat-lbl">Self-Registered Patients</span>
+              </div>
+              <div class="admin-stat-card">
+                <span class="astat-num" id="astatActiveAdmins">1</span>
+                <span class="astat-lbl">Clinic Administrators</span>
+              </div>
+            </div>
+
+            <div class="patient-table-wrap" style="margin-top: 1.5rem;">
+              <table class="patient-table">
+                <thead>
+                  <tr>
+                    <th>Account ID</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                    <th>Linked Patient ID</th>
+                    <th>Access Level</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody">
+                  <!-- Injected via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 1: My Health Record -->
+          <div class="demo-tab-content" id="patientRecordTab">
+            <div id="patientRecordContainer">
+              <!-- Dynamically populated with logged in patient's dossier -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 2: My Prescriptions & Reminders -->
+          <div class="demo-tab-content" id="patientRemindersTab">
+            <div id="patientMyRemindersContainer">
+              <!-- Dynamically populated with patient's medicines and dose checklist -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 3: My Appointments -->
+          <div class="demo-tab-content" id="patientAppointmentsTab">
+            <div id="patientAppointmentsContainer">
+              <!-- Dynamically populated with patient's consultation status -->
+            </div>
+          </div>
+
+          <!-- PATIENT EXCLUSIVE TAB 4: Self-Service Profile Update -->
+          <div class="demo-tab-content" id="patientProfileTab">
+            <div class="tab-intro-box">
+              <h3>Update My Personal Information</h3>
+              <p>Keep your phone number, emergency contact, and known allergies current for your attending doctor.</p>
+            </div>
+            <form id="patientProfileEditForm" class="patient-form">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="profName">Full Name (System Verified)</label>
+                  <input type="text" id="profName" readonly disabled>
+                </div>
+                <div class="form-group">
+                  <label for="profId">Patient Health ID (Assigned)</label>
+                  <input type="text" id="profId" readonly disabled>
+                </div>
+                <div class="form-group">
+                  <label for="profContact">Phone Number *</label>
+                  <input type="tel" id="profContact" required placeholder="+1 (555) 234-5678">
+                </div>
+                <div class="form-group">
+                  <label for="profAllergies">Known Allergies *</label>
+                  <input type="text" id="profAllergies" required placeholder="e.g. Penicillin, Peanuts, Pollen">
+                </div>
+                <div class="form-group full-width">
+                  <label for="profAddress">Residential Address / City</label>
+                  <input type="text" id="profAddress" placeholder="e.g. 104 Maple Street, Apt 3B">
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  <span>✓ Save My Updated Profile</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -961,6 +719,121 @@
       </div>
     </div>
 
+    <!-- Auth Modal (Login & Patient Sign-Up) -->
+    <div class="modal-backdrop" id="authModal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-box auth-modal-box">
+        <div class="modal-header">
+          <div class="auth-modal-tabs">
+            <button class="auth-tab-btn active" id="authLoginTabBtn" data-target="loginPanel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+              Sign In
+            </button>
+            <button class="auth-tab-btn" id="authSignupTabBtn" data-target="signupPanel">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+              Patient Self-Register
+            </button>
+          </div>
+          <button class="modal-close-btn" id="authCloseBtn" aria-label="Close modal">✕</button>
+        </div>
+
+        <div class="modal-body auth-modal-body">
+          <!-- QUICK DEMO ONE-CLICK BUTTONS -->
+          <div class="quick-login-strip">
+            <span class="quick-login-label">Quick 1-Click Demo Login:</span>
+            <div class="quick-login-btns">
+              <button type="button" class="btn btn-outline btn-xs" id="quickAdminLoginBtn">
+                🛡️ Admin (Dr. Nagaraj)
+              </button>
+              <button type="button" class="btn btn-outline btn-xs" id="quickPatientLoginBtn">
+                👤 Patient (Eleanor Vance)
+              </button>
+            </div>
+          </div>
+
+          <!-- PANEL 1: LOGIN FORM -->
+          <div class="auth-panel active" id="loginPanel">
+            <form id="loginForm">
+              <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" required placeholder="admin@phrms.clinic or your patient email">
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" required placeholder="••••••••">
+              </div>
+              <div class="auth-form-footer">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Log In to Health Record Portal
+                </button>
+                <p class="auth-switch-note">
+                  New patient? <a href="javascript:void(0)" id="switchToSignupLink">Register yourself here &rarr;</a>
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- PANEL 2: PATIENT SIGN UP (SELF-REGISTRATION) -->
+          <div class="auth-panel" id="signupPanel">
+            <div class="signup-intro-note">
+              <strong>Patient Self-Service Registration:</strong> Create your health record account to track prescriptions, view consultation history, and manage medical appointments.
+            </div>
+            <form id="signupForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="signName">Full Name *</label>
+                  <input type="text" id="signName" required placeholder="e.g. Liam Cooper">
+                </div>
+                <div class="form-group">
+                  <label for="signEmail">Email Address *</label>
+                  <input type="email" id="signEmail" required placeholder="liam@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="signPassword">Choose Password *</label>
+                  <input type="password" id="signPassword" required minlength="4" placeholder="At least 4 characters">
+                </div>
+                <div class="form-group">
+                  <label for="signPhone">Phone Number *</label>
+                  <input type="tel" id="signPhone" required placeholder="+1 (555) 902-1234">
+                </div>
+                <div class="form-group">
+                  <label for="signAge">Age *</label>
+                  <input type="number" id="signAge" required min="1" max="120" placeholder="e.g. 32">
+                </div>
+                <div class="form-group">
+                  <label for="signGender">Gender</label>
+                  <select id="signGender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group full-width">
+                  <label for="signAllergies">Known Allergies (Food / Medication)</label>
+                  <input type="text" id="signAllergies" placeholder="e.g. Peanuts, Penicillin (or type None)">
+                </div>
+                <div class="form-group full-width">
+                  <label for="signConcern">Primary Health Concern / Reason for Visit *</label>
+                  <input type="text" id="signConcern" required placeholder="e.g. Annual Wellness Checkup, Migraines, Back Pain">
+                </div>
+                <div class="form-group full-width">
+                  <label for="signAdminCode" class="optional-label">Staff Invite Code (Optional - for Clinic Admins only)</label>
+                  <input type="text" id="signAdminCode" placeholder="Enter CLINIC2026 if registering as clinic staff">
+                </div>
+              </div>
+              <div class="auth-form-footer">
+                <button type="submit" class="btn btn-primary btn-block">
+                  ✨ Complete Registration &amp; Open My Portal
+                </button>
+                <p class="auth-switch-note">
+                  Already registered? <a href="javascript:void(0)" id="switchToLoginLink">Log in to your account</a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Toast Notification Element -->
     <div class="toast-container" id="toastContainer" aria-live="polite"></div>
   </main>
@@ -1028,6 +901,6 @@
     </div>
   </footer>
 
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

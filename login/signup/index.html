@@ -1,22 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-    <link rel="stylesheet" href="/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Self-Registration | PHRMS</title>
+  <link rel="stylesheet" href="../../style.css">
 </head>
-<script src="/app.js"></script>
-<body>
-    <form action="/login" method="POST">
-        <h2>Login</h2>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-        <span>Don't have an account? <a href="/signup">Register here</a></span>
-    </form>
+<body style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: var(--bg-primary); padding: 1.5rem;">
+  <div class="modal-box" style="display: block; max-width: 580px; width: 100%; box-shadow: var(--shadow-lg);">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <span class="patient-id-badge">Self-Service</span>
+        <h3>Patient Registration</h3>
+      </div>
+      <a href="../../index.html" class="modal-close-btn" style="text-decoration: none;">✕</a>
+    </div>
+    <div class="modal-body">
+      <div class="signup-intro-note">
+        <strong>Register Yourself as a Patient:</strong> Create your health record account to track prescriptions, view consultation history, and manage medical appointments.
+      </div>
+
+      <form id="standaloneSignupForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="regName">Full Name *</label>
+            <input type="text" id="regName" required placeholder="e.g. Liam Cooper">
+          </div>
+          <div class="form-group">
+            <label for="regEmail">Email Address *</label>
+            <input type="email" id="regEmail" required placeholder="liam@example.com">
+          </div>
+          <div class="form-group">
+            <label for="regPass">Choose Password *</label>
+            <input type="password" id="regPass" required minlength="4" placeholder="••••••••">
+          </div>
+          <div class="form-group">
+            <label for="regPhone">Phone Number *</label>
+            <input type="tel" id="regPhone" required placeholder="+1 (555) 902-1234">
+          </div>
+          <div class="form-group">
+            <label for="regAge">Age *</label>
+            <input type="number" id="regAge" required min="1" max="120" placeholder="e.g. 32">
+          </div>
+          <div class="form-group">
+            <label for="regGender">Gender</label>
+            <select id="regGender">
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label for="regAllergies">Known Allergies (Food / Medication)</label>
+            <input type="text" id="regAllergies" placeholder="e.g. Peanuts, Penicillin (or type None)">
+          </div>
+          <div class="form-group full-width">
+            <label for="regConcern">Primary Health Concern / Reason for Visit *</label>
+            <input type="text" id="regConcern" required placeholder="e.g. Routine Checkup, Migraines, Back Pain">
+          </div>
+        </div>
+
+        <div class="auth-form-footer">
+          <button type="submit" class="btn btn-primary btn-block">
+            ✨ Complete Registration &amp; Open My Portal
+          </button>
+          <p class="auth-switch-note">
+            Already registered? <a href="../index.html">Sign in here</a>
+          </p>
+          <p class="auth-switch-note" style="margin-top: 0.25rem;">
+            <a href="../../index.html">&larr; Return to Main Showcase</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("standaloneSignupForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("regName").value.trim();
+        const email = document.getElementById("regEmail").value.trim().toLowerCase();
+        const password = document.getElementById("regPass").value;
+        const phone = document.getElementById("regPhone").value.trim();
+        const age = parseInt(document.getElementById("regAge").value, 10);
+        const gender = document.getElementById("regGender").value;
+        const allergies = document.getElementById("regAllergies").value.trim() || "None reported";
+        const concern = document.getElementById("regConcern").value.trim();
+
+        const users = JSON.parse(localStorage.getItem("phrms_users") || "[]");
+        const patients = JSON.parse(localStorage.getItem("phrms_patients") || "[]");
+
+        if (users.some(u => u.email.toLowerCase() === email)) {
+          alert("This email is already registered. Please sign in.");
+          return;
+        }
+
+        const today = new Date().toISOString().split("T")[0];
+        const nextVisit = new Date();
+        nextVisit.setDate(nextVisit.getDate() + 14);
+        const nextApptStr = nextVisit.toISOString().split("T")[0];
+
+        const newPatientId = "P-" + (100 + patients.length + 1);
+
+        const newPatientRecord = {
+          id: newPatientId,
+          name,
+          age,
+          gender,
+          contact: phone,
+          allergies,
+          diagnosis: concern,
+          lastVisit: today,
+          nextAppt: nextApptStr,
+          medication: "Daily Multivitamin 1 tablet (08:00 AM)",
+          medTime: "08:00 AM",
+          bloodGroup: "O+",
+          address: "Registered Online",
+          notes: `Self-registered on ${today}. Chief complaint: ${concern}. Pending initial doctor consultation.`
+        };
+
+        const newPatientUser = {
+          id: "USR-PAT-" + (users.length + 1),
+          name,
+          email,
+          password,
+          role: "patient",
+          roleLabel: "Self-Registered Patient",
+          patientId: newPatientId,
+          createdAt: today
+        };
+
+        patients.unshift(newPatientRecord);
+        users.unshift(newPatientUser);
+
+        localStorage.setItem("phrms_patients", JSON.stringify(patients));
+        localStorage.setItem("phrms_users", JSON.stringify(users));
+        localStorage.setItem("phrms_current_user", JSON.stringify(newPatientUser));
+
+        alert(`Welcome, ${name}! Your patient account (${newPatientId}) has been created.`);
+        window.location.href = "../../index.html#demo";
+      });
+    });
+  </script>
 </body>
 </html>

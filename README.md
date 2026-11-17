@@ -10,10 +10,31 @@
 
 A static, ultra-fast, and lightweight web application built directly from the **Patient Health Record Management System** plan.
 
-This website serves both as:
-1. **An Interactive Clinic Showcase**: Demonstrating the problem, 5 solution pillars, core features, 4-step workflow loop, security model, and future roadmap.
-2. **A Live In-Browser Prototype**: An interactive demo allowing visitors to search patient records, register new patients, view clinical encounter notes, and test medication reminders using client-side `localStorage`.
-3. **An Embedded Slide Presentation Mode**: Click **"Slides"** in the top navigation or press the arrow keys to review the 9 slides from the original deck.
+This system features a full **Role-Based Access Control (RBAC)** architecture supporting:
+1. **Patient Self-Registration & Personal Health Portal**: Patients can register themselves, manage their personal contact info, view their diagnosis and doctor visit notes, check prescribed medications, and track daily dosages.
+2. **Clinic Administrator (Full Access)**: Complete clinical oversight across all patients, staff walk-in intake, visit note recording, clinic-wide medication schedules, user account audits, and encrypted JSON database backup.
+3. **Guest / Public Demonstration**: Interactive showcase of the problem, 5 solution pillars, core features, 4-step workflow loop, security architecture, and future roadmap.
+4. **Embedded Slide Presentation Mode**: Click **"Slides"** in the navigation bar or use arrow keys (`←` / `→`) to present all 9 slides from the deck.
+
+---
+
+## 🔐 Authentication & Roles
+
+### 1. Pre-Configured Test Accounts (1-Click Login)
+You can log in instantly using the quick buttons in the modal or using these credentials:
+
+| Role | Email | Password | Access Level |
+| :--- | :--- | :--- | :--- |
+| **Clinic Admin** | `admin@phrms.clinic` | `admin123` | **Full Authority**: View all records, add doctor notes, staff intake, user directory, export backups |
+| **Patient Demo** | `eleanor@gmail.com` | `patient123` | **Private Access**: View own record (`P-101`), medicine reminders, appointments, edit personal profile |
+
+### 2. Patient Self-Registration
+- Click **"Patient Self-Register"** on the hero banner or navbar.
+- Fill out full name, email, password, age, gender, phone, known allergies, and primary health concern.
+- The system automatically:
+  - Generates a unique Health Record ID (e.g. `P-106`).
+  - Sets up the patient dossier.
+  - Links the new user account and immediately opens their **Personal Health Portal**.
 
 ---
 
@@ -25,9 +46,10 @@ This website serves both as:
 - **Dark / Light Mode**: Built-in toggle with automatic system preference detection.
 - **Interactive Simulator**:
   - Live search by patient name, unique ID (e.g. `P-101`), diagnosis, or allergies.
-  - New patient registration with automatic ID generation.
+  - Patient self-registration with automated ID assignment.
   - Clinical encounter log updater with timestamped doctor notes.
   - Daily medicine reminder tracker with administered dose acknowledgments.
+  - Admin cloud backup exporter (1-click JSON snapshot).
   - Suggestion box for clinic stakeholder feedback.
 
 ---
@@ -36,9 +58,9 @@ This website serves both as:
 
 ```text
 sj/
-├── index.html     # Semantic, accessible HTML5 structure & slide deck markup
+├── index.html     # Semantic, accessible HTML5 structure, Auth modal & slide deck
 ├── style.css      # Modern responsive styling, color palette & theme variables
-├── app.js         # Interactive demo simulator, state management & slide carousel
+├── app.js         # Interactive demo simulator, RBAC state management & slide carousel
 └── README.md      # Documentation and deployment guide
 ```
 
@@ -49,7 +71,7 @@ sj/
 Because this is a completely static lightweight website, you can view it immediately using any of the following methods:
 
 ### Method 1: Direct File Opening
-Double-click `index.html` or drag it into any web browser (Chrome, Edge, Firefox, Safari).
+Double-click [`index.html`](file:///c:/Users/Lenovo/Downloads/sj/index.html) or drag it into any web browser (Chrome, Edge, Firefox, Safari).
 
 ### Method 2: Local HTTP Server (Python)
 If you prefer running a local development server:
